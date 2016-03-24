@@ -33,24 +33,24 @@
           audio.load($('a', this).attr('data-src'));
           audio.play();
         });
-        <!--// Keyboard shortcuts-->
-        <!--$(document).keydown(function(e) {-->
-          <!--var unicode = e.charCode ? e.charCode : e.keyCode;-->
-             <!--// right arrow-->
-          <!--if (unicode == 39) {-->
-            <!--var next = $('li.playing').next();-->
-            <!--if (!next.length) next = $('ol li').first();-->
-            <!--next.click();-->
-            <!--// back arrow-->
-          <!--} else if (unicode == 37) {-->
-            <!--var prev = $('li.playing').prev();-->
-            <!--if (!prev.length) prev = $('ol li').last();-->
-            <!--prev.click();-->
-            <!--// spacebar-->
-          <!--} else if (unicode == 32) {-->
-            <!--audio.playPause();-->
-          <!--}-->
-        <!--})-->
+        // Keyboard shortcuts
+        $(document).keydown(function(e) {
+          var unicode = e.charCode ? e.charCode : e.keyCode;
+             // right arrow
+          if (unicode == 39) {
+            var next = $('li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.click();
+            // back arrow
+          } else if (unicode == 37) {
+            var prev = $('li.playing').prev();
+            if (!prev.length) prev = $('ol li').last();
+            prev.click();
+            // spacebar
+          } else if (unicode == 32) {
+            audio.playPause();
+          }
+        })
       });
     </script>
   </head>
@@ -65,6 +65,7 @@
 </p>
   <div id="wrapper">
     <audio preload></audio>
+    <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
     <ol>
 <li>
   <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//01%20Give%20Into%20The%20Urge...To%20Steal%20Something.mp3">[play] </a>Give Into The Urge...To Steal Something [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//01%20Give%20Into%20The%20Urge...To%20Steal%20Something.mp3' download>download</a>]</p>
