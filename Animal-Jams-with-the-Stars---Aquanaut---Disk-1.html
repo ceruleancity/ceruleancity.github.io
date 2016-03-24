@@ -4,35 +4,93 @@
     <meta charset="UTF-8">
     <title>Cerulean</title>
     <meta name="viewport" content="width=device-width"/>
+    <script src="jquery.min.js"></script>
+    <script src="audio.min.js"></script>
+    <script>
+      $(function() { 
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+          trackEnded: function() {
+            var next = $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.addClass('playing').siblings().removeClass('playing');
+            audio.load($('a', next).attr('data-src'));
+            audio.play();
+          }
+        });
+        
+        // Load in the first track
+        var audio = a[0];
+            first = $('ol li a').first().attr('data-src');
+        console.log(first);
+        $('ol li').first().addClass('playing');
+        audio.load(first);
+
+        // Load in a track on click
+        $('ol li').click(function(e) {
+          e.preventDefault();
+          $(this).addClass('playing').siblings().removeClass('playing');
+          audio.load($('a', this).attr('data-src'));
+          audio.play();
+        });
+        <!--// Keyboard shortcuts-->
+        <!--$(document).keydown(function(e) {-->
+          <!--var unicode = e.charCode ? e.charCode : e.keyCode;-->
+             <!--// right arrow-->
+          <!--if (unicode == 39) {-->
+            <!--var next = $('li.playing').next();-->
+            <!--if (!next.length) next = $('ol li').first();-->
+            <!--next.click();-->
+            <!--// back arrow-->
+          <!--} else if (unicode == 37) {-->
+            <!--var prev = $('li.playing').prev();-->
+            <!--if (!prev.length) prev = $('ol li').last();-->
+            <!--prev.click();-->
+            <!--// spacebar-->
+          <!--} else if (unicode == 32) {-->
+            <!--audio.playPause();-->
+          <!--}-->
+        <!--})-->
+      });
+    </script>
   </head>
   <body>
-<h1 class='title'><a href='index.html'>Cerulean</a></h1>
-<h3 class='album'><a href='Animal-Jams-with-the-Stars---Aquanaut---Disk-1.html'>Animal Jams with the Stars - Aquanaut - Disk 1</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal Jams with the Stars - Aquanaut - Disk 1/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201.zip' download>download</a>]</h3>
-<p class='description'>Shorts are comfy and easy to wear!</p>
-<p class='song'>1: A Major (Version 23) [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//A%20Major%20%28Version%2023%29.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//A%20Major%20%28Version%2023%29.mp3" controls>
-</audio><p class='song'>2: Beauty Queen [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Beauty%20Queen.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Beauty%20Queen.mp3" controls>
-</audio><p class='song'>3: Boyfriend [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Boyfriend.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Boyfriend.mp3" controls>
-</audio><p class='song'>4: Eleanor [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Eleanor.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Eleanor.mp3" controls>
-</audio><p class='song'>5: Elvis [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Elvis.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Elvis.mp3" controls>
-</audio><p class='song'>6: God Speed, John Glenn [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//God%20Speed%2C%20John%20Glenn.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//God%20Speed%2C%20John%20Glenn.mp3" controls>
-</audio><p class='song'>7: I Been Waitin' [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//I%20Been%20Waitin%27.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//I%20Been%20Waitin%27.mp3" controls>
-</audio><p class='song'>8: Julia [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Julia.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Julia.mp3" controls>
-</audio><p class='song'>9: Packard's Street [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Packard%27s%20Street.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Packard%27s%20Street.mp3" controls>
-</audio><p class='song'>10: Patrons, Nuns, and the Priests (My Friend) [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Patrons%2C%20Nuns%2C%20and%20the%20Priests%20%28My%20Friend%29.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Patrons%2C%20Nuns%2C%20and%20the%20Priests%20%28My%20Friend%29.mp3" controls>
-</audio><p class='song'>11: Solo You Can't Hear It [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Solo%20You%20Can%27t%20Hear%20It.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Solo%20You%20Can%27t%20Hear%20It.mp3" controls>
-</audio><p class='song'>12: T-Gay VS Dick-Me [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//T-Gay%20VS%20Dick-Me.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//T-Gay%20VS%20Dick-Me.mp3" controls>
-</audio>    <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city'>cerulean-cloud-city</a></p>
+  <h1 class='title'>
+    <a href='index.html'>Cerulean</a>
+  </h1>
+  <h3 class='album'>
+    <a href='Animal-Jams-with-the-Stars---Aquanaut---Disk-1.html'>Animal Jams with the Stars - Aquanaut - Disk 1</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal Jams with the Stars - Aquanaut - Disk 1/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201.zip' download>download</a>]
+  </h3>
+  <p class='description'>Shorts are comfy and easy to wear!</p>
+  <div id="wrapper">
+    <audio preload></audio>
+    <ol>
+<li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//A%20Major%20%28Version%2023%29.mp3">[play] </a>A Major (Version 23) [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//A%20Major%20%28Version%2023%29.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Beauty%20Queen.mp3">[play] </a>Beauty Queen [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Beauty%20Queen.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Boyfriend.mp3">[play] </a>Boyfriend [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Boyfriend.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Eleanor.mp3">[play] </a>Eleanor [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Eleanor.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Elvis.mp3">[play] </a>Elvis [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Elvis.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//God%20Speed%2C%20John%20Glenn.mp3">[play] </a>God Speed, John Glenn [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//God%20Speed%2C%20John%20Glenn.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//I%20Been%20Waitin%27.mp3">[play] </a>I Been Waitin' [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//I%20Been%20Waitin%27.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Julia.mp3">[play] </a>Julia [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Julia.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Packard%27s%20Street.mp3">[play] </a>Packard's Street [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Packard%27s%20Street.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Patrons%2C%20Nuns%2C%20and%20the%20Priests%20%28My%20Friend%29.mp3">[play] </a>Patrons, Nuns, and the Priests (My Friend) [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Patrons%2C%20Nuns%2C%20and%20the%20Priests%20%28My%20Friend%29.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Solo%20You%20Can%27t%20Hear%20It.mp3">[play] </a>Solo You Can't Hear It [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Solo%20You%20Can%27t%20Hear%20It.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//T-Gay%20VS%20Dick-Me.mp3">[play] </a>T-Gay VS Dick-Me [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//T-Gay%20VS%20Dick-Me.mp3' download>download</a>]</p>
+</li>  </ol>
+</div>
+    <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city'>cerulean-cloud-city</a></p>
   </body>
 </html>

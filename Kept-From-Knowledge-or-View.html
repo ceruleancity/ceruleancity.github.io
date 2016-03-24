@@ -4,28 +4,86 @@
     <meta charset="UTF-8">
     <title>Cerulean</title>
     <meta name="viewport" content="width=device-width"/>
+    <script src="jquery.min.js"></script>
+    <script src="audio.min.js"></script>
+    <script>
+      $(function() { 
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+          trackEnded: function() {
+            var next = $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.addClass('playing').siblings().removeClass('playing');
+            audio.load($('a', next).attr('data-src'));
+            audio.play();
+          }
+        });
+        
+        // Load in the first track
+        var audio = a[0];
+            first = $('ol li a').first().attr('data-src');
+        console.log(first);
+        $('ol li').first().addClass('playing');
+        audio.load(first);
+
+        // Load in a track on click
+        $('ol li').click(function(e) {
+          e.preventDefault();
+          $(this).addClass('playing').siblings().removeClass('playing');
+          audio.load($('a', this).attr('data-src'));
+          audio.play();
+        });
+        <!--// Keyboard shortcuts-->
+        <!--$(document).keydown(function(e) {-->
+          <!--var unicode = e.charCode ? e.charCode : e.keyCode;-->
+             <!--// right arrow-->
+          <!--if (unicode == 39) {-->
+            <!--var next = $('li.playing').next();-->
+            <!--if (!next.length) next = $('ol li').first();-->
+            <!--next.click();-->
+            <!--// back arrow-->
+          <!--} else if (unicode == 37) {-->
+            <!--var prev = $('li.playing').prev();-->
+            <!--if (!prev.length) prev = $('ol li').last();-->
+            <!--prev.click();-->
+            <!--// spacebar-->
+          <!--} else if (unicode == 32) {-->
+            <!--audio.playPause();-->
+          <!--}-->
+        <!--})-->
+      });
+    </script>
   </head>
   <body>
-<h1 class='title'><a href='index.html'>Cerulean</a></h1>
-<h3 class='album'><a href='Kept-From-Knowledge-or-View.html'>Kept From Knowledge or View</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept From Knowledge or View/Kept%20From%20Knowledge%20or%20View.zip' download>download</a>]</h3>
-<p class='description'>Andrew Lake plays pokemon yellow
+  <h1 class='title'>
+    <a href='index.html'>Cerulean</a>
+  </h1>
+  <h3 class='album'>
+    <a href='Kept-From-Knowledge-or-View.html'>Kept From Knowledge or View</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept From Knowledge or View/Kept%20From%20Knowledge%20or%20View.zip' download>download</a>]
+  </h3>
+  <p class='description'>Andrew Lake plays pokemon yellow
 </p>
-<p class='song'>1: Give Into The Urge...To Steal Something [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//01%20Give%20Into%20The%20Urge...To%20Steal%20Something.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//01%20Give%20Into%20The%20Urge...To%20Steal%20Something.mp3" controls>
-</audio><p class='song'>2: Pianer [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//02%20Pianer.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//02%20Pianer.mp3" controls>
-</audio><p class='song'>3: The Halloween Song [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//03%20The%20Halloween%20Song.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//03%20The%20Halloween%20Song.mp3" controls>
-</audio><p class='song'>4: Sophomore Voyage of the Titanic [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//04%20Sophomore%20Voyage%20of%20the%20Titanic.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//04%20Sophomore%20Voyage%20of%20the%20Titanic.mp3" controls>
-</audio><p class='song'>5: A Tantalizing Tango [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//05%20A%20Tantalizing%20Tango.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//05%20A%20Tantalizing%20Tango.mp3" controls>
-</audio><p class='song'>6: Siganella [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//06%20Siganella.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//06%20Siganella.mp3" controls>
-</audio><p class='song'>7: Bears, Beets, Battlestar Galactica [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//07%20Bears%2C%20Beets%2C%20Battlestar%20Galactica.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//07%20Bears%2C%20Beets%2C%20Battlestar%20Galactica.mp3" controls>
-</audio><p class='song'>8: Juicy Bits of Fruit [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//08%20Juicy%20Bits%20of%20Fruit.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//08%20Juicy%20Bits%20of%20Fruit.mp3" controls>
-</audio>    <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city'>cerulean-cloud-city</a></p>
+  <div id="wrapper">
+    <audio preload></audio>
+    <ol>
+<li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//01%20Give%20Into%20The%20Urge...To%20Steal%20Something.mp3">[play] </a>Give Into The Urge...To Steal Something [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//01%20Give%20Into%20The%20Urge...To%20Steal%20Something.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//02%20Pianer.mp3">[play] </a>Pianer [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//02%20Pianer.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//03%20The%20Halloween%20Song.mp3">[play] </a>The Halloween Song [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//03%20The%20Halloween%20Song.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//04%20Sophomore%20Voyage%20of%20the%20Titanic.mp3">[play] </a>Sophomore Voyage of the Titanic [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//04%20Sophomore%20Voyage%20of%20the%20Titanic.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//05%20A%20Tantalizing%20Tango.mp3">[play] </a>A Tantalizing Tango [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//05%20A%20Tantalizing%20Tango.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//06%20Siganella.mp3">[play] </a>Siganella [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//06%20Siganella.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//07%20Bears%2C%20Beets%2C%20Battlestar%20Galactica.mp3">[play] </a>Bears, Beets, Battlestar Galactica [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//07%20Bears%2C%20Beets%2C%20Battlestar%20Galactica.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//08%20Juicy%20Bits%20of%20Fruit.mp3">[play] </a>Juicy Bits of Fruit [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Kept%20From%20Knowledge%20or%20View//08%20Juicy%20Bits%20of%20Fruit.mp3' download>download</a>]</p>
+</li>  </ol>
+</div>
+    <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city'>cerulean-cloud-city</a></p>
   </body>
 </html>

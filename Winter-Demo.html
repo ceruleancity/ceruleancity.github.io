@@ -4,29 +4,87 @@
     <meta charset="UTF-8">
     <title>Cerulean</title>
     <meta name="viewport" content="width=device-width"/>
+    <script src="jquery.min.js"></script>
+    <script src="audio.min.js"></script>
+    <script>
+      $(function() { 
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+          trackEnded: function() {
+            var next = $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.addClass('playing').siblings().removeClass('playing');
+            audio.load($('a', next).attr('data-src'));
+            audio.play();
+          }
+        });
+        
+        // Load in the first track
+        var audio = a[0];
+            first = $('ol li a').first().attr('data-src');
+        console.log(first);
+        $('ol li').first().addClass('playing');
+        audio.load(first);
+
+        // Load in a track on click
+        $('ol li').click(function(e) {
+          e.preventDefault();
+          $(this).addClass('playing').siblings().removeClass('playing');
+          audio.load($('a', this).attr('data-src'));
+          audio.play();
+        });
+        <!--// Keyboard shortcuts-->
+        <!--$(document).keydown(function(e) {-->
+          <!--var unicode = e.charCode ? e.charCode : e.keyCode;-->
+             <!--// right arrow-->
+          <!--if (unicode == 39) {-->
+            <!--var next = $('li.playing').next();-->
+            <!--if (!next.length) next = $('ol li').first();-->
+            <!--next.click();-->
+            <!--// back arrow-->
+          <!--} else if (unicode == 37) {-->
+            <!--var prev = $('li.playing').prev();-->
+            <!--if (!prev.length) prev = $('ol li').last();-->
+            <!--prev.click();-->
+            <!--// spacebar-->
+          <!--} else if (unicode == 32) {-->
+            <!--audio.playPause();-->
+          <!--}-->
+        <!--})-->
+      });
+    </script>
   </head>
   <body>
-<h1 class='title'><a href='index.html'>Cerulean</a></h1>
-<h3 class='album'><a href='Winter-Demo.html'>Winter Demo</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter Demo/Winter%20Demo.zip' download>download</a>]</h3>
-<p class='description'>Winter 2005</p>
-<p class='song'>1: Oh Brother [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//01%20Oh%20Brother.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//01%20Oh%20Brother.mp3" controls>
-</audio><p class='song'>2: quincy adams [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//02%20quincy%20adams.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//02%20quincy%20adams.mp3" controls>
-</audio><p class='song'>3: LSD [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//03%20LSD%201.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//03%20LSD%201.mp3" controls>
-</audio><p class='song'>4: A Major [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//04%20A%20Major.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//04%20A%20Major.mp3" controls>
-</audio><p class='song'>5: theme song (cold as ice remix) [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//05%20theme%20song%20%28cold%20as%20ice%20remix%29.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//05%20theme%20song%20%28cold%20as%20ice%20remix%29.mp3" controls>
-</audio><p class='song'>6: As the Trees Shed [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//06%20As%20the%20Trees%20Shed.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//06%20As%20the%20Trees%20Shed.mp3" controls>
-</audio><p class='song'>7: Banjo [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//07%20Banjo%201.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//07%20Banjo%201.mp3" controls>
-</audio><p class='song'>8: pandbro [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//08%20pandbro.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//08%20pandbro.mp3" controls>
-</audio><p class='song'>9: brony cheatani [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//09%20brony%20cheatani%201.mp3' download>download</a>]</p>
-<audio src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//09%20brony%20cheatani%201.mp3" controls>
-</audio>    <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city'>cerulean-cloud-city</a></p>
+  <h1 class='title'>
+    <a href='index.html'>Cerulean</a>
+  </h1>
+  <h3 class='album'>
+    <a href='Winter-Demo.html'>Winter Demo</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter Demo/Winter%20Demo.zip' download>download</a>]
+  </h3>
+  <p class='description'>Winter 2005</p>
+  <div id="wrapper">
+    <audio preload></audio>
+    <ol>
+<li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//01%20Oh%20Brother.mp3">[play] </a>Oh Brother [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//01%20Oh%20Brother.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//02%20quincy%20adams.mp3">[play] </a>quincy adams [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//02%20quincy%20adams.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//03%20LSD%201.mp3">[play] </a>LSD [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//03%20LSD%201.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//04%20A%20Major.mp3">[play] </a>A Major [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//04%20A%20Major.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//05%20theme%20song%20%28cold%20as%20ice%20remix%29.mp3">[play] </a>theme song (cold as ice remix) [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//05%20theme%20song%20%28cold%20as%20ice%20remix%29.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//06%20As%20the%20Trees%20Shed.mp3">[play] </a>As the Trees Shed [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//06%20As%20the%20Trees%20Shed.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//07%20Banjo%201.mp3">[play] </a>Banjo [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//07%20Banjo%201.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//08%20pandbro.mp3">[play] </a>pandbro [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//08%20pandbro.mp3' download>download</a>]</p>
+</li><li>
+  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//09%20brony%20cheatani%201.mp3">[play] </a>brony cheatani [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//09%20brony%20cheatani%201.mp3' download>download</a>]</p>
+</li>  </ol>
+</div>
+    <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city'>cerulean-cloud-city</a></p>
   </body>
 </html>
