@@ -1,3 +1,7 @@
 a.play_track {
   text-decoration: none;
 }
+
+p.footer-credits {
+  font-size: xx-small;
+}
