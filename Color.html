@@ -1,84 +1,93 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
     <meta charset="UTF-8">
     <title>Cerulean</title>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
     <script src="audio.min.js"></script>
     <script>
-      $(function() { 
-        // Setup the player to autoplay the next track
-        var a = audiojs.createAll({
-          trackEnded: function() {
-            var next = $('ol li.playing').next();
-            if (!next.length) next = $('ol li').first();
-            next.addClass('playing').siblings().removeClass('playing');
-            audio.load($('a', next).attr('data-src'));
-            audio.play();
-          }
+        $(function() { 
+            // Setup the player to autoplay the next track
+            var a = audiojs.createAll({
+            trackEnded: function() {
+                var next = $('ol li.playing').next();
+                if (!next.length) next = $('ol li').first();
+                next.addClass('playing').siblings().removeClass('playing');
+                var next_link = $('a', next);
+                audio.load(next_link.attr('data-src'));
+                audio.play();
+                document.getElementById('current_track').innerHTML = next_link.attr('track-title');
+            }
         });
-        
+
         // Load in the first track
         var audio = a[0];
-            first = $('ol li a').first().attr('data-src');
-        console.log(first);
+        first = $('ol li a').first()
+        first_data_src = first.attr('data-src');
         $('ol li').first().addClass('playing');
-        audio.load(first);
+        audio.load(first_data_src);
+        document.getElementById('current_track').innerHTML = first.attr('track-title');
 
         // Load in a track on click
         $('ol li').click(function(e) {
-          e.preventDefault();
-          $(this).addClass('playing').siblings().removeClass('playing');
-          audio.load($('a', this).attr('data-src'));
-          audio.play();
+            e.preventDefault();
+            $(this).addClass('playing').siblings().removeClass('playing');
+            var next = $('a', this);
+            audio.load(next.attr('data-src'));
+            audio.play();
+            document.getElementById('current_track').innerHTML = next.attr('track-title');
         });
+
         // Keyboard shortcuts
         $(document).keydown(function(e) {
-          var unicode = e.charCode ? e.charCode : e.keyCode;
+            var unicode = e.charCode ? e.charCode : e.keyCode;
              // right arrow
-          if (unicode == 39) {
-            var next = $('li.playing').next();
+            if (unicode == 39) {
+                var next = $('li.playing').next();
             if (!next.length) next = $('ol li').first();
-            next.click();
+                next.click();
             // back arrow
-          } else if (unicode == 37) {
-            var prev = $('li.playing').prev();
-            if (!prev.length) prev = $('ol li').last();
-            prev.click();
-            // spacebar
-          } else if (unicode == 32) {
-            audio.playPause();
-          }
-        })
-      });
+            } else if (unicode == 37) {
+                var prev = $('li.playing').prev();
+                if (!prev.length) prev = $('ol li').last();
+                    prev.click();
+                // spacebar
+                } else if (unicode == 32) {
+                    audio.playPause();
+                }
+            })
+        });
     </script>
-  </head>
-  <body>
-  <h1 class='title'>
-    <a href='index.html'>Cerulean</a>
-  </h1>
-  <h3 class='album'>
-    <a href='Color.html'>Color</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color/Color.zip' download>download</a>]
-  </h3>
-  <p class='description'>Partially inspired by Plymouth, MA. Features leather couch noises more than once
+    </head>
+    <body>
+        <h1 class='title'>
+            <a href='index.html'>Cerulean</a>
+        </h1>
+        <h3 class='album'>
+            <a href='Color.html'>Color</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color/Color.zip' download>download</a>]
+        </h3>
+        <p class='description'>Partially inspired by Plymouth, MA. Features leather couch noises more than once
 </p>
-  <div id="wrapper">
-    <audio preload></audio>
-    <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
-    <ol>
-<li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//01%20At%20the%20Lake%20House.mp3">[play] </a>At the Lake House [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//01%20At%20the%20Lake%20House.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//02%20Red%20Wine.mp3">[play] </a>Red Wine [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//02%20Red%20Wine.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//03%20Homemade%20Rowboat.mp3">[play] </a>Homemade Rowboat [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//03%20Homemade%20Rowboat.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//04%20An%20Attractive%20Woman.mp3">[play] </a>An Attractive Woman [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//04%20An%20Attractive%20Woman.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//05%20intermission.mp3">[play] </a>intermission [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//05%20intermission.mp3' download>download</a>]</p>
-</li>  </ol>
-</div>
-    <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
-  </body>
+        <div id="wrapper">
+            <div class='current_track'>
+              <p>Current Track: <span id='current_track'></span></p>
+            </div>
+            <audio preload></audio>
+            <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
+            <ol>
+            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//01%20At%20the%20Lake%20House.mp3" track-title="At the Lake House">&#x27A4;</a> At the Lake House [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//01%20At%20the%20Lake%20House.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//02%20Red%20Wine.mp3" track-title="Red Wine">&#x27A4;</a> Red Wine [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//02%20Red%20Wine.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//03%20Homemade%20Rowboat.mp3" track-title="Homemade Rowboat">&#x27A4;</a> Homemade Rowboat [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//03%20Homemade%20Rowboat.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//04%20An%20Attractive%20Woman.mp3" track-title="An Attractive Woman">&#x27A4;</a> An Attractive Woman [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//04%20An%20Attractive%20Woman.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//05%20intermission.mp3" track-title="intermission">&#x27A4;</a> intermission [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//05%20intermission.mp3' download>download</a>]</p>
+            </li>            </ol>
+        </div>        <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
+    </body>
 </html>

@@ -1,83 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
     <meta charset="UTF-8">
     <title>Cerulean</title>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
     <script src="audio.min.js"></script>
     <script>
-      $(function() { 
-        // Setup the player to autoplay the next track
-        var a = audiojs.createAll({
-          trackEnded: function() {
-            var next = $('ol li.playing').next();
-            if (!next.length) next = $('ol li').first();
-            next.addClass('playing').siblings().removeClass('playing');
-            audio.load($('a', next).attr('data-src'));
-            audio.play();
-          }
+        $(function() { 
+            // Setup the player to autoplay the next track
+            var a = audiojs.createAll({
+            trackEnded: function() {
+                var next = $('ol li.playing').next();
+                if (!next.length) next = $('ol li').first();
+                next.addClass('playing').siblings().removeClass('playing');
+                var next_link = $('a', next);
+                audio.load(next_link.attr('data-src'));
+                audio.play();
+                document.getElementById('current_track').innerHTML = next_link.attr('track-title');
+            }
         });
-        
+
         // Load in the first track
         var audio = a[0];
-            first = $('ol li a').first().attr('data-src');
-        console.log(first);
+        first = $('ol li a').first()
+        first_data_src = first.attr('data-src');
         $('ol li').first().addClass('playing');
-        audio.load(first);
+        audio.load(first_data_src);
+        document.getElementById('current_track').innerHTML = first.attr('track-title');
 
         // Load in a track on click
         $('ol li').click(function(e) {
-          e.preventDefault();
-          $(this).addClass('playing').siblings().removeClass('playing');
-          audio.load($('a', this).attr('data-src'));
-          audio.play();
+            e.preventDefault();
+            $(this).addClass('playing').siblings().removeClass('playing');
+            var next = $('a', this);
+            audio.load(next.attr('data-src'));
+            audio.play();
+            document.getElementById('current_track').innerHTML = next.attr('track-title');
         });
+
         // Keyboard shortcuts
         $(document).keydown(function(e) {
-          var unicode = e.charCode ? e.charCode : e.keyCode;
+            var unicode = e.charCode ? e.charCode : e.keyCode;
              // right arrow
-          if (unicode == 39) {
-            var next = $('li.playing').next();
+            if (unicode == 39) {
+                var next = $('li.playing').next();
             if (!next.length) next = $('ol li').first();
-            next.click();
+                next.click();
             // back arrow
-          } else if (unicode == 37) {
-            var prev = $('li.playing').prev();
-            if (!prev.length) prev = $('ol li').last();
-            prev.click();
-            // spacebar
-          } else if (unicode == 32) {
-            audio.playPause();
-          }
-        })
-      });
+            } else if (unicode == 37) {
+                var prev = $('li.playing').prev();
+                if (!prev.length) prev = $('ol li').last();
+                    prev.click();
+                // spacebar
+                } else if (unicode == 32) {
+                    audio.playPause();
+                }
+            })
+        });
     </script>
-  </head>
-  <body>
-  <h1 class='title'>
-    <a href='index.html'>Cerulean</a>
-  </h1>
-  <h3 class='album'>
-    <a href='Cerulean_Logwad---New-Bad-Ambience.html'>Cerulean_Logwad - New Bad Ambience</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad - New Bad Ambience/Cerulean_Logwad%20-%20New%20Bad%20Ambience.zip' download>download</a>]
-  </h3>
-  <p class='description'>Logwad + cerulean made this in Pearl Hall, Burlington, VT in 2007</p>
-  <div id="wrapper">
-    <audio preload></audio>
-    <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
-    <ol>
-<li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//01%20What%20Happened%20To%20Louis_.mp3">[play] </a>What Happened To Louis [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//01%20What%20Happened%20To%20Louis_.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//02%20Untitled%201.mp3">[play] </a>Untitled [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//02%20Untitled%201.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//03%20Untitled%203.mp3">[play] </a>Untitled [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//03%20Untitled%203.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//04%20Untitled%204_2.mp3">[play] </a>Untitled 4 [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//04%20Untitled%204_2.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//05%20Untitled%205.mp3">[play] </a>Untitled [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//05%20Untitled%205.mp3' download>download</a>]</p>
-</li>  </ol>
-</div>
-    <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
-  </body>
+    </head>
+    <body>
+        <h1 class='title'>
+            <a href='index.html'>Cerulean</a>
+        </h1>
+        <h3 class='album'>
+            <a href='Cerulean_Logwad---New-Bad-Ambience.html'>Cerulean_Logwad - New Bad Ambience</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad - New Bad Ambience/Cerulean_Logwad%20-%20New%20Bad%20Ambience.zip' download>download</a>]
+        </h3>
+        <p class='description'>Logwad + cerulean made this in Pearl Hall, Burlington, VT in 2007</p>
+        <div id="wrapper">
+            <div class='current_track'>
+              <p>Current Track: <span id='current_track'></span></p>
+            </div>
+            <audio preload></audio>
+            <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
+            <ol>
+            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//01%20What%20Happened%20To%20Louis_.mp3" track-title="What Happened To Louis">&#x27A4;</a> What Happened To Louis [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//01%20What%20Happened%20To%20Louis_.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//02%20Untitled%201.mp3" track-title="Untitled">&#x27A4;</a> Untitled [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//02%20Untitled%201.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//03%20Untitled%203.mp3" track-title="Untitled">&#x27A4;</a> Untitled [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//03%20Untitled%203.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//04%20Untitled%204_2.mp3" track-title="Untitled 4">&#x27A4;</a> Untitled 4 [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//04%20Untitled%204_2.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//05%20Untitled%205.mp3" track-title="Untitled">&#x27A4;</a> Untitled [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Cerulean_Logwad%20-%20New%20Bad%20Ambience//05%20Untitled%205.mp3' download>download</a>]</p>
+            </li>            </ol>
+        </div>        <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
+    </body>
 </html>

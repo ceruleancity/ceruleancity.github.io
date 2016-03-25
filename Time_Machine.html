@@ -1,95 +1,104 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
     <meta charset="UTF-8">
     <title>Cerulean</title>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
     <script src="audio.min.js"></script>
     <script>
-      $(function() { 
-        // Setup the player to autoplay the next track
-        var a = audiojs.createAll({
-          trackEnded: function() {
-            var next = $('ol li.playing').next();
-            if (!next.length) next = $('ol li').first();
-            next.addClass('playing').siblings().removeClass('playing');
-            audio.load($('a', next).attr('data-src'));
-            audio.play();
-          }
+        $(function() { 
+            // Setup the player to autoplay the next track
+            var a = audiojs.createAll({
+            trackEnded: function() {
+                var next = $('ol li.playing').next();
+                if (!next.length) next = $('ol li').first();
+                next.addClass('playing').siblings().removeClass('playing');
+                var next_link = $('a', next);
+                audio.load(next_link.attr('data-src'));
+                audio.play();
+                document.getElementById('current_track').innerHTML = next_link.attr('track-title');
+            }
         });
-        
+
         // Load in the first track
         var audio = a[0];
-            first = $('ol li a').first().attr('data-src');
-        console.log(first);
+        first = $('ol li a').first()
+        first_data_src = first.attr('data-src');
         $('ol li').first().addClass('playing');
-        audio.load(first);
+        audio.load(first_data_src);
+        document.getElementById('current_track').innerHTML = first.attr('track-title');
 
         // Load in a track on click
         $('ol li').click(function(e) {
-          e.preventDefault();
-          $(this).addClass('playing').siblings().removeClass('playing');
-          audio.load($('a', this).attr('data-src'));
-          audio.play();
+            e.preventDefault();
+            $(this).addClass('playing').siblings().removeClass('playing');
+            var next = $('a', this);
+            audio.load(next.attr('data-src'));
+            audio.play();
+            document.getElementById('current_track').innerHTML = next.attr('track-title');
         });
+
         // Keyboard shortcuts
         $(document).keydown(function(e) {
-          var unicode = e.charCode ? e.charCode : e.keyCode;
+            var unicode = e.charCode ? e.charCode : e.keyCode;
              // right arrow
-          if (unicode == 39) {
-            var next = $('li.playing').next();
+            if (unicode == 39) {
+                var next = $('li.playing').next();
             if (!next.length) next = $('ol li').first();
-            next.click();
+                next.click();
             // back arrow
-          } else if (unicode == 37) {
-            var prev = $('li.playing').prev();
-            if (!prev.length) prev = $('ol li').last();
-            prev.click();
-            // spacebar
-          } else if (unicode == 32) {
-            audio.playPause();
-          }
-        })
-      });
+            } else if (unicode == 37) {
+                var prev = $('li.playing').prev();
+                if (!prev.length) prev = $('ol li').last();
+                    prev.click();
+                // spacebar
+                } else if (unicode == 32) {
+                    audio.playPause();
+                }
+            })
+        });
     </script>
-  </head>
-  <body>
-  <h1 class='title'>
-    <a href='index.html'>Cerulean</a>
-  </h1>
-  <h3 class='album'>
-    <a href='Time_Machine.html'>Time_Machine</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine/Time_Machine.zip' download>download</a>]
-  </h3>
-  <p class='description'>When Kieran McCoobery invented the world's first time machine in 2015, he went back in time to recover the following music.</p>
-  <div id="wrapper">
-    <audio preload></audio>
-    <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
-    <ol>
-<li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//01Epiphany.mp3">[play] </a>Epiphany [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//01Epiphany.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//As%20the%20Trees%20Shed%20%28Bingo%20Pajama%20Remix%29.mp3">[play] </a>As the Trees Shed (Bingo Pajama Remix) [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//As%20the%20Trees%20Shed%20%28Bingo%20Pajama%20Remix%29.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Brony%20Chyeatani_061215.mp3">[play] </a>Brony Chyeatani [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Brony%20Chyeatani_061215.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Chyeanny%20Broth_061215.mp3">[play] </a>Chyeanny Broth [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Chyeanny%20Broth_061215.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Fuck%20with%20my%20Stolen%20Shit.mp3">[play] </a>Fuck with my Stolen Shit [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Fuck%20with%20my%20Stolen%20Shit.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Gimme%20that%20beer.mp3">[play] </a>Gimme that beer [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Gimme%20that%20beer.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//I%20am%20the%20Wind%2C%20You%20are%20the%20Feather_061215.mp3">[play] </a>I am the Wind, You are the Feather [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//I%20am%20the%20Wind%2C%20You%20are%20the%20Feather_061215.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Pandbro_061215.mp3">[play] </a>Pandbro [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Pandbro_061215.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Pandy%20Sandtroslodon.mp3">[play] </a>Pandy Sandtroslodon [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Pandy%20Sandtroslodon.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Please%20Dont%20Let%20This%20Be%20the%20Final%20Name.mp3">[play] </a>Please Dont Let This Be the Final Name [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Please%20Dont%20Let%20This%20Be%20the%20Final%20Name.mp3' download>download</a>]</p>
-</li><li>
-  <p class='song'><a href="#" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//This%20is%20a%20Mystery%20to%20Me.mp3">[play] </a>This is a Mystery to Me [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//This%20is%20a%20Mystery%20to%20Me.mp3' download>download</a>]</p>
-</li>  </ol>
-</div>
-    <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
-  </body>
+    </head>
+    <body>
+        <h1 class='title'>
+            <a href='index.html'>Cerulean</a>
+        </h1>
+        <h3 class='album'>
+            <a href='Time_Machine.html'>Time_Machine</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine/Time_Machine.zip' download>download</a>]
+        </h3>
+        <p class='description'>When Kieran McCoobery invented the world's first time machine in 2015, he went back in time to recover the following music.</p>
+        <div id="wrapper">
+            <div class='current_track'>
+              <p>Current Track: <span id='current_track'></span></p>
+            </div>
+            <audio preload></audio>
+            <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
+            <ol>
+            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//01Epiphany.mp3" track-title="Epiphany">&#x27A4;</a> Epiphany [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//01Epiphany.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//As%20the%20Trees%20Shed%20%28Bingo%20Pajama%20Remix%29.mp3" track-title="As the Trees Shed (Bingo Pajama Remix)">&#x27A4;</a> As the Trees Shed (Bingo Pajama Remix) [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//As%20the%20Trees%20Shed%20%28Bingo%20Pajama%20Remix%29.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Brony%20Chyeatani_061215.mp3" track-title="Brony Chyeatani">&#x27A4;</a> Brony Chyeatani [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Brony%20Chyeatani_061215.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Chyeanny%20Broth_061215.mp3" track-title="Chyeanny Broth">&#x27A4;</a> Chyeanny Broth [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Chyeanny%20Broth_061215.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Fuck%20with%20my%20Stolen%20Shit.mp3" track-title="Fuck with my Stolen Shit">&#x27A4;</a> Fuck with my Stolen Shit [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Fuck%20with%20my%20Stolen%20Shit.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Gimme%20that%20beer.mp3" track-title="Gimme that beer">&#x27A4;</a> Gimme that beer [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Gimme%20that%20beer.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//I%20am%20the%20Wind%2C%20You%20are%20the%20Feather_061215.mp3" track-title="I am the Wind, You are the Feather">&#x27A4;</a> I am the Wind, You are the Feather [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//I%20am%20the%20Wind%2C%20You%20are%20the%20Feather_061215.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Pandbro_061215.mp3" track-title="Pandbro">&#x27A4;</a> Pandbro [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Pandbro_061215.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Pandy%20Sandtroslodon.mp3" track-title="Pandy Sandtroslodon">&#x27A4;</a> Pandy Sandtroslodon [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Pandy%20Sandtroslodon.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Please%20Dont%20Let%20This%20Be%20the%20Final%20Name.mp3" track-title="Please Dont Let This Be the Final Name">&#x27A4;</a> Please Dont Let This Be the Final Name [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//Please%20Dont%20Let%20This%20Be%20the%20Final%20Name.mp3' download>download</a>]</p>
+            </li>            <li>
+                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//This%20is%20a%20Mystery%20to%20Me.mp3" track-title="This is a Mystery to Me">&#x27A4;</a> This is a Mystery to Me [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Time_Machine//This%20is%20a%20Mystery%20to%20Me.mp3' download>download</a>]</p>
+            </li>            </ol>
+        </div>        <p class='footer-credits'>auto-generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
+    </body>
 </html>
