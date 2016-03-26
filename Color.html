@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
     <script src="audio.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script>
         $(function() { 
             // Setup the player to autoplay the next track
@@ -62,33 +63,38 @@
     </script>
     </head>
     <body>
-        <h1 class='title'>
-            <a href='index.html'>Cerulean</a>
+        <h1 class="title">
+            <a href="index.html">Cerulean</a>
         </h1>
-        <h3 class='album'>
-            <a href='Color.html'>Color</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color/Color.zip' download>download</a>]
+        <h3 class="album">
+            <a href="Color.html">Color</a> [<a class="download_link album_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Color/Color.zip" download>download</a>]
         </h3>
-        <p class='description'>Partially inspired by Plymouth, MA. Features leather couch noises more than once
+        <p class="description">Partially inspired by Plymouth, MA. Features leather couch noises more than once
 </p>
         <div id="wrapper">
-            <div class='current_track'>
-              <p>Current Track: <span id='current_track'></span></p>
+            <div class="current_track">
+              <p>Current Track: <span id="current_track"></span></p>
             </div>
             <audio preload></audio>
-            <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
-            <ol>
+            <p class="controls">space: play/pause, &larr;/&rarr; prev/next track</p>
+            <ol class="track_list">
             <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//01%20At%20the%20Lake%20House.mp3" track-title="At the Lake House">&#x27A4;</a> At the Lake House [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//01%20At%20the%20Lake%20House.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//02%20Red%20Wine.mp3" track-title="Red Wine">&#x27A4;</a> Red Wine [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//02%20Red%20Wine.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//03%20Homemade%20Rowboat.mp3" track-title="Homemade Rowboat">&#x27A4;</a> Homemade Rowboat [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//03%20Homemade%20Rowboat.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//04%20An%20Attractive%20Woman.mp3" track-title="An Attractive Woman">&#x27A4;</a> An Attractive Woman [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//04%20An%20Attractive%20Woman.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//05%20intermission.mp3" track-title="intermission">&#x27A4;</a> intermission [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Color//05%20intermission.mp3' download>download</a>]</p>
-            </li>            </ol>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//01%20At%20the%20Lake%20House.mp3" track-title="At the Lake House"><i class='fa fa-play fa-lg'></i></a> At the Lake House [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//01%20At%20the%20Lake%20House.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//02%20Red%20Wine.mp3" track-title="Red Wine"><i class='fa fa-play fa-lg'></i></a> Red Wine [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//02%20Red%20Wine.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//03%20Homemade%20Rowboat.mp3" track-title="Homemade Rowboat"><i class='fa fa-play fa-lg'></i></a> Homemade Rowboat [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//03%20Homemade%20Rowboat.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//04%20An%20Attractive%20Woman.mp3" track-title="An Attractive Woman"><i class='fa fa-play fa-lg'></i></a> An Attractive Woman [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//04%20An%20Attractive%20Woman.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//05%20intermission.mp3" track-title="intermission"><i class='fa fa-play fa-lg'></i></a> intermission [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Color//05%20intermission.mp3" download>download</a>]</p>
+            </li>
+            </ol>
         </div>        <hr />
-        <p class='footer-credits'>generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
+        <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>
 </html>

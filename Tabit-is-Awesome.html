@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
     <script src="audio.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script>
         $(function() { 
             // Setup the player to autoplay the next track
@@ -62,34 +63,40 @@
     </script>
     </head>
     <body>
-        <h1 class='title'>
-            <a href='index.html'>Cerulean</a>
+        <h1 class="title">
+            <a href="index.html">Cerulean</a>
         </h1>
-        <h3 class='album'>
-            <a href='Tabit-is-Awesome.html'>Tabit is Awesome</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit is Awesome/Tabit%20is%20Awesome.zip' download>download</a>]
+        <h3 class="album">
+            <a href="Tabit-is-Awesome.html">Tabit is Awesome</a> [<a class="download_link album_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit is Awesome/Tabit%20is%20Awesome.zip" download>download</a>]
         </h3>
-        <p class='description'>Shorts are comfy and easy to wear!</p>
+        <p class="description">Shorts are comfy and easy to wear!</p>
         <div id="wrapper">
-            <div class='current_track'>
-              <p>Current Track: <span id='current_track'></span></p>
+            <div class="current_track">
+              <p>Current Track: <span id="current_track"></span></p>
             </div>
             <audio preload></audio>
-            <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
-            <ol>
+            <p class="controls">space: play/pause, &larr;/&rarr; prev/next track</p>
+            <ol class="track_list">
             <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//01%20Dopamine%20Bleachers.mp3" track-title="Dopamine Bleachers">&#x27A4;</a> Dopamine Bleachers [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//01%20Dopamine%20Bleachers.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//02%20Revenge%20of%20the%20Clones.mp3" track-title="Revenge of the Clones">&#x27A4;</a> Revenge of the Clones [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//02%20Revenge%20of%20the%20Clones.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//03%20Black%20Beauty.mp3" track-title="Black Beauty">&#x27A4;</a> Black Beauty [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//03%20Black%20Beauty.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//04%20Throwin%27%20Buckets.mp3" track-title="Throwin' Buckets">&#x27A4;</a> Throwin' Buckets [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//04%20Throwin%27%20Buckets.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//05%20Your%20Social%20Scene.mp3" track-title="Your Social Scene">&#x27A4;</a> Your Social Scene [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//05%20Your%20Social%20Scene.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//06%20Humlayhukuleyahaaa.mp3" track-title="Humlayhukuleyahaaa">&#x27A4;</a> Humlayhukuleyahaaa [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//06%20Humlayhukuleyahaaa.mp3' download>download</a>]</p>
-            </li>            </ol>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//01%20Dopamine%20Bleachers.mp3" track-title="Dopamine Bleachers"><i class='fa fa-play fa-lg'></i></a> Dopamine Bleachers [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//01%20Dopamine%20Bleachers.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//02%20Revenge%20of%20the%20Clones.mp3" track-title="Revenge of the Clones"><i class='fa fa-play fa-lg'></i></a> Revenge of the Clones [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//02%20Revenge%20of%20the%20Clones.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//03%20Black%20Beauty.mp3" track-title="Black Beauty"><i class='fa fa-play fa-lg'></i></a> Black Beauty [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//03%20Black%20Beauty.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//04%20Throwin%27%20Buckets.mp3" track-title="Throwin' Buckets"><i class='fa fa-play fa-lg'></i></a> Throwin' Buckets [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//04%20Throwin%27%20Buckets.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//05%20Your%20Social%20Scene.mp3" track-title="Your Social Scene"><i class='fa fa-play fa-lg'></i></a> Your Social Scene [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//05%20Your%20Social%20Scene.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//06%20Humlayhukuleyahaaa.mp3" track-title="Humlayhukuleyahaaa"><i class='fa fa-play fa-lg'></i></a> Humlayhukuleyahaaa [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Tabit%20is%20Awesome//06%20Humlayhukuleyahaaa.mp3" download>download</a>]</p>
+            </li>
+            </ol>
         </div>        <hr />
-        <p class='footer-credits'>generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
+        <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>
 </html>

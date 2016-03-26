@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
     <script src="audio.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script>
         $(function() { 
             // Setup the player to autoplay the next track
@@ -62,42 +63,52 @@
     </script>
     </head>
     <body>
-        <h1 class='title'>
-            <a href='index.html'>Cerulean</a>
+        <h1 class="title">
+            <a href="index.html">Cerulean</a>
         </h1>
-        <h3 class='album'>
-            <a href='Animal-Jams-with-the-Stars---Space-Cadet---Disk-2.html'>Animal Jams with the Stars - Space Cadet - Disk 2</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal Jams with the Stars - Space Cadet - Disk 2/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202.zip' download>download</a>]
+        <h3 class="album">
+            <a href="Animal-Jams-with-the-Stars---Space-Cadet---Disk-2.html">Animal Jams with the Stars - Space Cadet - Disk 2</a> [<a class="download_link album_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal Jams with the Stars - Space Cadet - Disk 2/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202.zip" download>download</a>]
         </h3>
-        <p class='description'>Shorts are comfy and easy to wear!</p>
+        <p class="description">Shorts are comfy and easy to wear!</p>
         <div id="wrapper">
-            <div class='current_track'>
-              <p>Current Track: <span id='current_track'></span></p>
+            <div class="current_track">
+              <p>Current Track: <span id="current_track"></span></p>
             </div>
             <audio preload></audio>
-            <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
-            <ol>
+            <p class="controls">space: play/pause, &larr;/&rarr; prev/next track</p>
+            <ol class="track_list">
             <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//01%20Flight%20of%20the%20Fritto.mp3" track-title="Flight of the Fritto">&#x27A4;</a> Flight of the Fritto [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//01%20Flight%20of%20the%20Fritto.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//02%20A-B-I-T-C-6.mp3" track-title="A-B-I-T-C-">&#x27A4;</a> A-B-I-T-C- [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//02%20A-B-I-T-C-6.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//03%20Ice%20Box%20Space%20Party.mp3" track-title="Ice Box Space Party">&#x27A4;</a> Ice Box Space Party [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//03%20Ice%20Box%20Space%20Party.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//04%20Threaded%20Metal%20Cylender.mp3" track-title="Threaded Metal Cylender">&#x27A4;</a> Threaded Metal Cylender [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//04%20Threaded%20Metal%20Cylender.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//05%20Pineapple%20Death%20March.mp3" track-title="Pineapple Death March">&#x27A4;</a> Pineapple Death March [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//05%20Pineapple%20Death%20March.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//06%20Canum%20Venaticorum.mp3" track-title="Canum Venaticorum">&#x27A4;</a> Canum Venaticorum [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//06%20Canum%20Venaticorum.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//07%20Straight%20Creepin%27.mp3" track-title="Straight Creepin'">&#x27A4;</a> Straight Creepin' [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//07%20Straight%20Creepin%27.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//08%20A%2C%20E%2C%20I%2C%20O%2C%20U%2C%20and%20Sometimes%20Y.mp3" track-title="A, E, I, O, U, and Sometimes Y">&#x27A4;</a> A, E, I, O, U, and Sometimes Y [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//08%20A%2C%20E%2C%20I%2C%20O%2C%20U%2C%20and%20Sometimes%20Y.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//Kara%20Thrace%20and%20Her%20Special%20Destiny.mp3" track-title="Kara Thrace and Her Special Destiny">&#x27A4;</a> Kara Thrace and Her Special Destiny [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//Kara%20Thrace%20and%20Her%20Special%20Destiny.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//Reverse%20Trees%201.mp3" track-title="Reverse Trees">&#x27A4;</a> Reverse Trees [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//Reverse%20Trees%201.mp3' download>download</a>]</p>
-            </li>            </ol>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//01%20Flight%20of%20the%20Fritto.mp3" track-title="Flight of the Fritto"><i class='fa fa-play fa-lg'></i></a> Flight of the Fritto [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//01%20Flight%20of%20the%20Fritto.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//02%20A-B-I-T-C-6.mp3" track-title="A-B-I-T-C-"><i class='fa fa-play fa-lg'></i></a> A-B-I-T-C- [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//02%20A-B-I-T-C-6.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//03%20Ice%20Box%20Space%20Party.mp3" track-title="Ice Box Space Party"><i class='fa fa-play fa-lg'></i></a> Ice Box Space Party [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//03%20Ice%20Box%20Space%20Party.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//04%20Threaded%20Metal%20Cylender.mp3" track-title="Threaded Metal Cylender"><i class='fa fa-play fa-lg'></i></a> Threaded Metal Cylender [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//04%20Threaded%20Metal%20Cylender.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//05%20Pineapple%20Death%20March.mp3" track-title="Pineapple Death March"><i class='fa fa-play fa-lg'></i></a> Pineapple Death March [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//05%20Pineapple%20Death%20March.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//06%20Canum%20Venaticorum.mp3" track-title="Canum Venaticorum"><i class='fa fa-play fa-lg'></i></a> Canum Venaticorum [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//06%20Canum%20Venaticorum.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//07%20Straight%20Creepin%27.mp3" track-title="Straight Creepin'"><i class='fa fa-play fa-lg'></i></a> Straight Creepin' [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//07%20Straight%20Creepin%27.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//08%20A%2C%20E%2C%20I%2C%20O%2C%20U%2C%20and%20Sometimes%20Y.mp3" track-title="A, E, I, O, U, and Sometimes Y"><i class='fa fa-play fa-lg'></i></a> A, E, I, O, U, and Sometimes Y [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//08%20A%2C%20E%2C%20I%2C%20O%2C%20U%2C%20and%20Sometimes%20Y.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//Kara%20Thrace%20and%20Her%20Special%20Destiny.mp3" track-title="Kara Thrace and Her Special Destiny"><i class='fa fa-play fa-lg'></i></a> Kara Thrace and Her Special Destiny [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//Kara%20Thrace%20and%20Her%20Special%20Destiny.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//Reverse%20Trees%201.mp3" track-title="Reverse Trees"><i class='fa fa-play fa-lg'></i></a> Reverse Trees [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Space%20Cadet%20-%20Disk%202//Reverse%20Trees%201.mp3" download>download</a>]</p>
+            </li>
+            </ol>
         </div>        <hr />
-        <p class='footer-credits'>generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
+        <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>
 </html>

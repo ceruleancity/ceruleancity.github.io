@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
     <script src="audio.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script>
         $(function() { 
             // Setup the player to autoplay the next track
@@ -62,35 +63,41 @@
     </script>
     </head>
     <body>
-        <h1 class='title'>
-            <a href='index.html'>Cerulean</a>
+        <h1 class="title">
+            <a href="index.html">Cerulean</a>
         </h1>
-        <h3 class='album'>
-            <a href='when_we_were_young.html'>when_we_were_young</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young/when_we_were_young.zip' download>download</a>]
+        <h3 class="album">
+            <a href="when_we_were_young.html">when_we_were_young</a> [<a class="download_link album_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young/when_we_were_young.zip" download>download</a>]
         </h3>
-        <p class='description'>The hit debut album by cerulean
+        <p class="description">The hit debut album by cerulean
 </p>
         <div id="wrapper">
-            <div class='current_track'>
-              <p>Current Track: <span id='current_track'></span></p>
+            <div class="current_track">
+              <p>Current Track: <span id="current_track"></span></p>
             </div>
             <audio preload></audio>
-            <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
-            <ol>
+            <p class="controls">space: play/pause, &larr;/&rarr; prev/next track</p>
+            <ol class="track_list">
             <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//001when_we_were_young.mp3" track-title="when we were young">&#x27A4;</a> when we were young [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//001when_we_were_young.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//002hawthorne.mp3" track-title="hawthorne">&#x27A4;</a> hawthorne [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//002hawthorne.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//003smile.mp3" track-title="smile">&#x27A4;</a> smile [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//003smile.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//004silver_leaf.mp3" track-title="silver leaf">&#x27A4;</a> silver leaf [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//004silver_leaf.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//005the_dutchess.mp3" track-title="the dutchess">&#x27A4;</a> the dutchess [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//005the_dutchess.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//006ufo_tofu.mp3" track-title="ufo tofu">&#x27A4;</a> ufo tofu [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//006ufo_tofu.mp3' download>download</a>]</p>
-            </li>            </ol>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//001when_we_were_young.mp3" track-title="when we were young"><i class='fa fa-play fa-lg'></i></a> when we were young [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//001when_we_were_young.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//002hawthorne.mp3" track-title="hawthorne"><i class='fa fa-play fa-lg'></i></a> hawthorne [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//002hawthorne.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//003smile.mp3" track-title="smile"><i class='fa fa-play fa-lg'></i></a> smile [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//003smile.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//004silver_leaf.mp3" track-title="silver leaf"><i class='fa fa-play fa-lg'></i></a> silver leaf [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//004silver_leaf.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//005the_dutchess.mp3" track-title="the dutchess"><i class='fa fa-play fa-lg'></i></a> the dutchess [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//005the_dutchess.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//006ufo_tofu.mp3" track-title="ufo tofu"><i class='fa fa-play fa-lg'></i></a> ufo tofu [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//006ufo_tofu.mp3" download>download</a>]</p>
+            </li>
+            </ol>
         </div>        <hr />
-        <p class='footer-credits'>generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
+        <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>
 </html>

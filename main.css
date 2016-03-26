@@ -5,3 +5,7 @@ a {
 p.footer-credits {
   font-size: xx-small;
 }
+
+a.track_download_link {
+  font-size: small;
+}

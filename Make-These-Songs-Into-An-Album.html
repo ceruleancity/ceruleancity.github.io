@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
     <script src="audio.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script>
         $(function() { 
             // Setup the player to autoplay the next track
@@ -62,32 +63,37 @@
     </script>
     </head>
     <body>
-        <h1 class='title'>
-            <a href='index.html'>Cerulean</a>
+        <h1 class="title">
+            <a href="index.html">Cerulean</a>
         </h1>
-        <h3 class='album'>
-            <a href='Make-These-Songs-Into-An-Album.html'>Make These Songs Into An Album</a> [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Make These Songs Into An Album/Make%20These%20Songs%20Into%20An%20Album.zip' download>download</a>]
+        <h3 class="album">
+            <a href="Make-These-Songs-Into-An-Album.html">Make These Songs Into An Album</a> [<a class="download_link album_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Make These Songs Into An Album/Make%20These%20Songs%20Into%20An%20Album.zip" download>download</a>]
         </h3>
-        <p class='description'>Shorts are comfy and easy to wear!</p>
+        <p class="description">Shorts are comfy and easy to wear!</p>
         <div id="wrapper">
-            <div class='current_track'>
-              <p>Current Track: <span id='current_track'></span></p>
+            <div class="current_track">
+              <p>Current Track: <span id="current_track"></span></p>
             </div>
             <audio preload></audio>
-            <p class='controls'>space: play/pause, &larr;/&rarr; prev/next track</p>
-            <ol>
+            <p class="controls">space: play/pause, &larr;/&rarr; prev/next track</p>
+            <ol class="track_list">
             <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//01%20Death%20by%20Unicorn%20Sandwich.mp3" track-title="Death by Unicorn Sandwich">&#x27A4;</a> Death by Unicorn Sandwich [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//01%20Death%20by%20Unicorn%20Sandwich.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//02%20Elevator%20Eight%20Thousand.mp3" track-title="Elevator Eight Thousand">&#x27A4;</a> Elevator Eight Thousand [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//02%20Elevator%20Eight%20Thousand.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//03%20Osaka.mp3" track-title="Osaka">&#x27A4;</a> Osaka [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//03%20Osaka.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//04%20Uncle%20Salty%27s%20Lighthouse.mp3" track-title="Uncle Salty's Lighthouse">&#x27A4;</a> Uncle Salty's Lighthouse [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//04%20Uncle%20Salty%27s%20Lighthouse.mp3' download>download</a>]</p>
-            </li>            <li>
-                <p class='song'><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//05%20Scenes%20From%20A%20Hat.mp3" track-title="Scenes From A Hat">&#x27A4;</a> Scenes From A Hat [<a href='https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//05%20Scenes%20From%20A%20Hat.mp3' download>download</a>]</p>
-            </li>            </ol>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//01%20Death%20by%20Unicorn%20Sandwich.mp3" track-title="Death by Unicorn Sandwich"><i class='fa fa-play fa-lg'></i></a> Death by Unicorn Sandwich [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//01%20Death%20by%20Unicorn%20Sandwich.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//02%20Elevator%20Eight%20Thousand.mp3" track-title="Elevator Eight Thousand"><i class='fa fa-play fa-lg'></i></a> Elevator Eight Thousand [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//02%20Elevator%20Eight%20Thousand.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//03%20Osaka.mp3" track-title="Osaka"><i class='fa fa-play fa-lg'></i></a> Osaka [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//03%20Osaka.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//04%20Uncle%20Salty%27s%20Lighthouse.mp3" track-title="Uncle Salty's Lighthouse"><i class='fa fa-play fa-lg'></i></a> Uncle Salty's Lighthouse [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//04%20Uncle%20Salty%27s%20Lighthouse.mp3" download>download</a>]</p>
+            </li>
+            <li>
+                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//05%20Scenes%20From%20A%20Hat.mp3" track-title="Scenes From A Hat"><i class='fa fa-play fa-lg'></i></a> Scenes From A Hat [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Make%20These%20Songs%20Into%20An%20Album//05%20Scenes%20From%20A%20Hat.mp3" download>download</a>]</p>
+            </li>
+            </ol>
         </div>        <hr />
-        <p class='footer-credits'>generated by <a href='https://github.com/tonygaetani/cerulean-cloud-city' target='_blank'>cerulean-cloud-city</a></p>
+        <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>
 </html>
