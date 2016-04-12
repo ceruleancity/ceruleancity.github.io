@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
-    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script>
 $(document).ready(function() {
     var audio;
@@ -19,34 +19,32 @@ $(document).ready(function() {
         current = 0;
         audio = $('audio');
         playlist = $('#playlist');
-        tracks = playlist.find('li a');
+        tracks = playlist.find('li');
         len = tracks.length - 1;
-        playlist.find('a').click(function(e){
+        playlist.find('a.play_track').click(function(e) {
             e.preventDefault();
             link = $(this);
-            current = link.parent().index();
+            current = link.parents('li').index();
             run(link, audio[0]);
         });
-        audio[0].addEventListener('ended',function(e){
+        audio[0].addEventListener('ended',function(e) {
             current++;
-            if(current == len){
+            if(current < len) {
+                link = playlist.find('a.play_track')[current];
+            } else {
                 current = 0;
-                link = playlist.find('a')[0];
-            }else{
-                link = playlist.find('a')[current];
+                link = playlist.find('a.play_track')[0];
             }
-            run($(link),audio[0]);
+            run($(link), audio[0]);
         });
     }
-    function run(link, player){
-            console.log(link);
-            console.log(link.attr('href'));
-            player.src = link.attr('href');
-            console.log(link.attr('href'));
+    function run(link, player) {
+            player.src = link[0].getAttribute('data-src');
             par = link.parent();
             par.addClass('active').siblings().removeClass('active');
             audio[0].load();
             audio[0].play();
+            $('span#current_track').html('').append(link[0].getAttribute('track-title'));
     }
 });
     </script>
@@ -63,11 +61,14 @@ $(document).ready(function() {
             <div class="current_track">
               <p>Current Track: <span id="current_track">Not Today!</span></p>
             </div>
-            <audio id="audio" preload="auto" tabindex="0" controls="" type="audio/mpeg">
+            <audio id="audio" preload controls>
                 <source type="audio/mp3" src="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//07%20Not%20Today%21.mp3">
                 Sorry, your browser does not support HTML5 audio.
             </audio>
-            <ol id="playlist">            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//07%20Not%20Today%21.mp3">Not Today!</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//08%20Gay%20Driving%20Beatz.mp3">Gay Driving Beatz</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//samalamas.mp3">samalamas</a></li>            </ol>
+            <ol id="playlist">            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//07%20Not%20Today%21.mp3">Not Today!</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//07%20Not%20Today%21.mp3" track-title="Not Today!"><i class='fa fa-play fa-lg'></i></a> Not Today! [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//07%20Not%20Today%21.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//08%20Gay%20Driving%20Beatz.mp3">Gay Driving Beatz</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//08%20Gay%20Driving%20Beatz.mp3" track-title="Gay Driving Beatz"><i class='fa fa-play fa-lg'></i></a> Gay Driving Beatz [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//08%20Gay%20Driving%20Beatz.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//samalamas.mp3">samalamas</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//samalamas.mp3" track-title="samalamas"><i class='fa fa-play fa-lg'></i></a> samalamas [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/ZOMGWTFLOL//samalamas.mp3" download>download</a>]</p></li>            </ol>
         </div>        <hr />
         <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>

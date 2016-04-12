@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
-    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script>
 $(document).ready(function() {
     var audio;
@@ -19,34 +19,32 @@ $(document).ready(function() {
         current = 0;
         audio = $('audio');
         playlist = $('#playlist');
-        tracks = playlist.find('li a');
+        tracks = playlist.find('li');
         len = tracks.length - 1;
-        playlist.find('a').click(function(e){
+        playlist.find('a.play_track').click(function(e) {
             e.preventDefault();
             link = $(this);
-            current = link.parent().index();
+            current = link.parents('li').index();
             run(link, audio[0]);
         });
-        audio[0].addEventListener('ended',function(e){
+        audio[0].addEventListener('ended',function(e) {
             current++;
-            if(current == len){
+            if(current < len) {
+                link = playlist.find('a.play_track')[current];
+            } else {
                 current = 0;
-                link = playlist.find('a')[0];
-            }else{
-                link = playlist.find('a')[current];
+                link = playlist.find('a.play_track')[0];
             }
-            run($(link),audio[0]);
+            run($(link), audio[0]);
         });
     }
-    function run(link, player){
-            console.log(link);
-            console.log(link.attr('href'));
-            player.src = link.attr('href');
-            console.log(link.attr('href'));
+    function run(link, player) {
+            player.src = link[0].getAttribute('data-src');
             par = link.parent();
             par.addClass('active').siblings().removeClass('active');
             audio[0].load();
             audio[0].play();
+            $('span#current_track').html('').append(link[0].getAttribute('track-title'));
     }
 });
     </script>
@@ -63,11 +61,23 @@ $(document).ready(function() {
             <div class="current_track">
               <p>Current Track: <span id="current_track">A Major</span></p>
             </div>
-            <audio id="audio" preload="auto" tabindex="0" controls="" type="audio/mpeg">
+            <audio id="audio" preload controls>
                 <source type="audio/mp3" src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//A%20Major.mp3">
                 Sorry, your browser does not support HTML5 audio.
             </audio>
-            <ol id="playlist">            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//A%20Major.mp3">A Major</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Beauty%20Queen.mp3">Beauty Queen</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Boyfriend.mp3">Boyfriend</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Eleanor.mp3">Eleanor</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Elvis.mp3">Elvis</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//God%20Speed%2C%20John%20Glenn.mp3">God Speed, John Glenn</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//I%20Been%20Waitin%27.mp3">I Been Waitin'</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Julia.mp3">Julia</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Packard%27s%20Street.mp3">Packard's Street</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Patrons%2C%20Nuns%2C%20and%20the%20Priests%20%28My%20Friend%29.mp3">Patrons, Nuns, and the Priests (My Friend)</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Solo%20You%20Can%27t%20Hear%20It.mp3">Solo You Can't Hear It</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//T-Gay%20VS%20Dick-Me.mp3">T-Gay VS Dick-Me</a></li>            </ol>
+            <ol id="playlist">            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//A%20Major.mp3">A Major</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//A%20Major.mp3" track-title="A Major"><i class='fa fa-play fa-lg'></i></a> A Major [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//A%20Major.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Beauty%20Queen.mp3">Beauty Queen</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Beauty%20Queen.mp3" track-title="Beauty Queen"><i class='fa fa-play fa-lg'></i></a> Beauty Queen [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Beauty%20Queen.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Boyfriend.mp3">Boyfriend</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Boyfriend.mp3" track-title="Boyfriend"><i class='fa fa-play fa-lg'></i></a> Boyfriend [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Boyfriend.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Eleanor.mp3">Eleanor</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Eleanor.mp3" track-title="Eleanor"><i class='fa fa-play fa-lg'></i></a> Eleanor [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Eleanor.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Elvis.mp3">Elvis</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Elvis.mp3" track-title="Elvis"><i class='fa fa-play fa-lg'></i></a> Elvis [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Elvis.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//God%20Speed%2C%20John%20Glenn.mp3">God Speed, John Glenn</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//God%20Speed%2C%20John%20Glenn.mp3" track-title="God Speed, John Glenn"><i class='fa fa-play fa-lg'></i></a> God Speed, John Glenn [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//God%20Speed%2C%20John%20Glenn.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//I%20Been%20Waitin%27.mp3">I Been Waitin'</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//I%20Been%20Waitin%27.mp3" track-title="I Been Waitin'"><i class='fa fa-play fa-lg'></i></a> I Been Waitin' [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//I%20Been%20Waitin%27.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Julia.mp3">Julia</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Julia.mp3" track-title="Julia"><i class='fa fa-play fa-lg'></i></a> Julia [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Julia.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Packard%27s%20Street.mp3">Packard's Street</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Packard%27s%20Street.mp3" track-title="Packard's Street"><i class='fa fa-play fa-lg'></i></a> Packard's Street [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Packard%27s%20Street.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Patrons%2C%20Nuns%2C%20and%20the%20Priests%20%28My%20Friend%29.mp3">Patrons, Nuns, and the Priests (My Friend)</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Patrons%2C%20Nuns%2C%20and%20the%20Priests%20%28My%20Friend%29.mp3" track-title="Patrons, Nuns, and the Priests (My Friend)"><i class='fa fa-play fa-lg'></i></a> Patrons, Nuns, and the Priests (My Friend) [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Patrons%2C%20Nuns%2C%20and%20the%20Priests%20%28My%20Friend%29.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Solo%20You%20Can%27t%20Hear%20It.mp3">Solo You Can't Hear It</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Solo%20You%20Can%27t%20Hear%20It.mp3" track-title="Solo You Can't Hear It"><i class='fa fa-play fa-lg'></i></a> Solo You Can't Hear It [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//Solo%20You%20Can%27t%20Hear%20It.mp3" download>download</a>]</p></li>            <!--<li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//T-Gay%20VS%20Dick-Me.mp3">T-Gay VS Dick-Me</a></li>-->
+            <li><p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//T-Gay%20VS%20Dick-Me.mp3" track-title="T-Gay VS Dick-Me"><i class='fa fa-play fa-lg'></i></a> T-Gay VS Dick-Me [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Animal%20Jams%20with%20the%20Stars%20-%20Aquanaut%20-%20Disk%201//T-Gay%20VS%20Dick-Me.mp3" download>download</a>]</p></li>            </ol>
         </div>        <hr />
         <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>
