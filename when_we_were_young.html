@@ -6,60 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
-    <script src="audio.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
     <script>
-        $(function() { 
-            // Setup the player to autoplay the next track
-            var a = audiojs.createAll({
-            trackEnded: function() {
-                var next = $('ol li.playing').next();
-                if (!next.length) next = $('ol li').first();
-                next.addClass('playing').siblings().removeClass('playing');
-                var next_link = $('a', next);
-                audio.load(next_link.attr('data-src'));
-                audio.play();
-                document.getElementById('current_track').innerHTML = next_link.attr('track-title');
-            }
-        });
+$(document).ready(function() {
+    var audio;
+    var playlist;
+    var tracks;
+    var current;
 
-        // Load in the first track
-        var audio = a[0];
-        first = $('ol li a').first()
-        first_data_src = first.attr('data-src');
-        $('ol li').first().addClass('playing');
-        audio.load(first_data_src);
-        document.getElementById('current_track').innerHTML = first.attr('track-title');
-
-        // Load in a track on click
-        $('ol li').click(function(e) {
+    init();
+    function init(){
+        current = 0;
+        audio = $('audio');
+        playlist = $('#playlist');
+        tracks = playlist.find('li a');
+        len = tracks.length - 1;
+        playlist.find('a').click(function(e){
             e.preventDefault();
-            $(this).addClass('playing').siblings().removeClass('playing');
-            var next = $('a', this);
-            audio.load(next.attr('data-src'));
-            audio.play();
-            document.getElementById('current_track').innerHTML = next.attr('track-title');
+            link = $(this);
+            current = link.parent().index();
+            run(link, audio[0]);
         });
-
-        // Keyboard shortcuts
-        $(document).keydown(function(e) {
-            var unicode = e.charCode ? e.charCode : e.keyCode;
-             // right arrow
-            if (unicode == 39) {
-                var next = $('li.playing').next();
-            if (!next.length) next = $('ol li').first();
-                next.click();
-            // back arrow
-            } else if (unicode == 37) {
-                var prev = $('li.playing').prev();
-                if (!prev.length) prev = $('ol li').last();
-                    prev.click();
-                // spacebar
-                } else if (unicode == 32) {
-                    audio.playPause();
-                }
-            })
+        audio[0].addEventListener('ended',function(e){
+            current++;
+            if(current == len){
+                current = 0;
+                link = playlist.find('a')[0];
+            }else{
+                link = playlist.find('a')[current];
+            }
+            run($(link),audio[0]);
         });
+    }
+    function run(link, player){
+            console.log(link);
+            console.log(link.attr('href'));
+            player.src = link.attr('href');
+            console.log(link.attr('href'));
+            par = link.parent();
+            par.addClass('active').siblings().removeClass('active');
+            audio[0].load();
+            audio[0].play();
+    }
+});
     </script>
     </head>
     <body>
@@ -73,30 +62,13 @@
 </p>
         <div id="wrapper">
             <div class="current_track">
-              <p>Current Track: <span id="current_track"></span></p>
+              <p>Current Track: <span id="current_track">when we were young</span></p>
             </div>
-            <audio preload></audio>
-            <p class="controls">space: play/pause, &larr;/&rarr; prev/next track</p>
-            <ol class="track_list">
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//001when_we_were_young.mp3" track-title="when we were young"><i class='fa fa-play fa-lg'></i></a> when we were young [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//001when_we_were_young.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//002hawthorne.mp3" track-title="hawthorne"><i class='fa fa-play fa-lg'></i></a> hawthorne [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//002hawthorne.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//003smile.mp3" track-title="smile"><i class='fa fa-play fa-lg'></i></a> smile [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//003smile.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//004silver_leaf.mp3" track-title="silver leaf"><i class='fa fa-play fa-lg'></i></a> silver leaf [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//004silver_leaf.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//005the_dutchess.mp3" track-title="the dutchess"><i class='fa fa-play fa-lg'></i></a> the dutchess [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//005the_dutchess.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//006ufo_tofu.mp3" track-title="ufo tofu"><i class='fa fa-play fa-lg'></i></a> ufo tofu [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//006ufo_tofu.mp3" download>download</a>]</p>
-            </li>
-            </ol>
+            <audio id="audio" preload="auto" tabindex="0" controls="" type="audio/mpeg">
+                <source type="audio/mp3" src="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//001when_we_were_young.mp3">
+                Sorry, your browser does not support HTML5 audio.
+            </audio>
+            <ol id="playlist">            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//001when_we_were_young.mp3">when we were young</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//002hawthorne.mp3">hawthorne</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//003smile.mp3">smile</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//004silver_leaf.mp3">silver leaf</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//005the_dutchess.mp3">the dutchess</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/when_we_were_young//006ufo_tofu.mp3">ufo tofu</a></li>            </ol>
         </div>        <hr />
         <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>

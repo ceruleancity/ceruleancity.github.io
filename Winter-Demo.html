@@ -6,60 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
-    <script src="audio.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
     <script>
-        $(function() { 
-            // Setup the player to autoplay the next track
-            var a = audiojs.createAll({
-            trackEnded: function() {
-                var next = $('ol li.playing').next();
-                if (!next.length) next = $('ol li').first();
-                next.addClass('playing').siblings().removeClass('playing');
-                var next_link = $('a', next);
-                audio.load(next_link.attr('data-src'));
-                audio.play();
-                document.getElementById('current_track').innerHTML = next_link.attr('track-title');
-            }
-        });
+$(document).ready(function() {
+    var audio;
+    var playlist;
+    var tracks;
+    var current;
 
-        // Load in the first track
-        var audio = a[0];
-        first = $('ol li a').first()
-        first_data_src = first.attr('data-src');
-        $('ol li').first().addClass('playing');
-        audio.load(first_data_src);
-        document.getElementById('current_track').innerHTML = first.attr('track-title');
-
-        // Load in a track on click
-        $('ol li').click(function(e) {
+    init();
+    function init(){
+        current = 0;
+        audio = $('audio');
+        playlist = $('#playlist');
+        tracks = playlist.find('li a');
+        len = tracks.length - 1;
+        playlist.find('a').click(function(e){
             e.preventDefault();
-            $(this).addClass('playing').siblings().removeClass('playing');
-            var next = $('a', this);
-            audio.load(next.attr('data-src'));
-            audio.play();
-            document.getElementById('current_track').innerHTML = next.attr('track-title');
+            link = $(this);
+            current = link.parent().index();
+            run(link, audio[0]);
         });
-
-        // Keyboard shortcuts
-        $(document).keydown(function(e) {
-            var unicode = e.charCode ? e.charCode : e.keyCode;
-             // right arrow
-            if (unicode == 39) {
-                var next = $('li.playing').next();
-            if (!next.length) next = $('ol li').first();
-                next.click();
-            // back arrow
-            } else if (unicode == 37) {
-                var prev = $('li.playing').prev();
-                if (!prev.length) prev = $('ol li').last();
-                    prev.click();
-                // spacebar
-                } else if (unicode == 32) {
-                    audio.playPause();
-                }
-            })
+        audio[0].addEventListener('ended',function(e){
+            current++;
+            if(current == len){
+                current = 0;
+                link = playlist.find('a')[0];
+            }else{
+                link = playlist.find('a')[current];
+            }
+            run($(link),audio[0]);
         });
+    }
+    function run(link, player){
+            console.log(link);
+            console.log(link.attr('href'));
+            player.src = link.attr('href');
+            console.log(link.attr('href'));
+            par = link.parent();
+            par.addClass('active').siblings().removeClass('active');
+            audio[0].load();
+            audio[0].play();
+    }
+});
     </script>
     </head>
     <body>
@@ -72,39 +61,13 @@
         <p class="description">Winter 2005</p>
         <div id="wrapper">
             <div class="current_track">
-              <p>Current Track: <span id="current_track"></span></p>
+              <p>Current Track: <span id="current_track">Oh Brother</span></p>
             </div>
-            <audio preload></audio>
-            <p class="controls">space: play/pause, &larr;/&rarr; prev/next track</p>
-            <ol class="track_list">
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//01%20Oh%20Brother.mp3" track-title="Oh Brother"><i class='fa fa-play fa-lg'></i></a> Oh Brother [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//01%20Oh%20Brother.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//02%20quincy%20adams.mp3" track-title="quincy adams"><i class='fa fa-play fa-lg'></i></a> quincy adams [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//02%20quincy%20adams.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//03%20LSD%201.mp3" track-title="LSD"><i class='fa fa-play fa-lg'></i></a> LSD [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//03%20LSD%201.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//04%20A%20Major.mp3" track-title="A Major"><i class='fa fa-play fa-lg'></i></a> A Major [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//04%20A%20Major.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//05%20theme%20song.mp3" track-title="theme song"><i class='fa fa-play fa-lg'></i></a> theme song [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//05%20theme%20song.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//06%20As%20the%20Trees%20Shed.mp3" track-title="As the Trees Shed"><i class='fa fa-play fa-lg'></i></a> As the Trees Shed [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//06%20As%20the%20Trees%20Shed.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//07%20Banjo%201.mp3" track-title="Banjo"><i class='fa fa-play fa-lg'></i></a> Banjo [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//07%20Banjo%201.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//08%20pandbro.mp3" track-title="pandbro"><i class='fa fa-play fa-lg'></i></a> pandbro [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//08%20pandbro.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//09%20brony%20cheatani%201.mp3" track-title="brony cheatani"><i class='fa fa-play fa-lg'></i></a> brony cheatani [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//09%20brony%20cheatani%201.mp3" download>download</a>]</p>
-            </li>
-            </ol>
+            <audio id="audio" preload="auto" tabindex="0" controls="" type="audio/mpeg">
+                <source type="audio/mp3" src="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//01%20Oh%20Brother.mp3">
+                Sorry, your browser does not support HTML5 audio.
+            </audio>
+            <ol id="playlist">            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//01%20Oh%20Brother.mp3">Oh Brother</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//02%20quincy%20adams.mp3">quincy adams</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//03%20LSD%201.mp3">LSD</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//04%20A%20Major.mp3">A Major</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//05%20theme%20song.mp3">theme song</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//06%20As%20the%20Trees%20Shed.mp3">As the Trees Shed</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//07%20Banjo%201.mp3">Banjo</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//08%20pandbro.mp3">pandbro</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/Winter%20Demo//09%20brony%20cheatani%201.mp3">brony cheatani</a></li>            </ol>
         </div>        <hr />
         <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>

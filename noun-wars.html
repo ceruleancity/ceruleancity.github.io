@@ -6,60 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.min.js"></script>
-    <script src="audio.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
     <script>
-        $(function() { 
-            // Setup the player to autoplay the next track
-            var a = audiojs.createAll({
-            trackEnded: function() {
-                var next = $('ol li.playing').next();
-                if (!next.length) next = $('ol li').first();
-                next.addClass('playing').siblings().removeClass('playing');
-                var next_link = $('a', next);
-                audio.load(next_link.attr('data-src'));
-                audio.play();
-                document.getElementById('current_track').innerHTML = next_link.attr('track-title');
-            }
-        });
+$(document).ready(function() {
+    var audio;
+    var playlist;
+    var tracks;
+    var current;
 
-        // Load in the first track
-        var audio = a[0];
-        first = $('ol li a').first()
-        first_data_src = first.attr('data-src');
-        $('ol li').first().addClass('playing');
-        audio.load(first_data_src);
-        document.getElementById('current_track').innerHTML = first.attr('track-title');
-
-        // Load in a track on click
-        $('ol li').click(function(e) {
+    init();
+    function init(){
+        current = 0;
+        audio = $('audio');
+        playlist = $('#playlist');
+        tracks = playlist.find('li a');
+        len = tracks.length - 1;
+        playlist.find('a').click(function(e){
             e.preventDefault();
-            $(this).addClass('playing').siblings().removeClass('playing');
-            var next = $('a', this);
-            audio.load(next.attr('data-src'));
-            audio.play();
-            document.getElementById('current_track').innerHTML = next.attr('track-title');
+            link = $(this);
+            current = link.parent().index();
+            run(link, audio[0]);
         });
-
-        // Keyboard shortcuts
-        $(document).keydown(function(e) {
-            var unicode = e.charCode ? e.charCode : e.keyCode;
-             // right arrow
-            if (unicode == 39) {
-                var next = $('li.playing').next();
-            if (!next.length) next = $('ol li').first();
-                next.click();
-            // back arrow
-            } else if (unicode == 37) {
-                var prev = $('li.playing').prev();
-                if (!prev.length) prev = $('ol li').last();
-                    prev.click();
-                // spacebar
-                } else if (unicode == 32) {
-                    audio.playPause();
-                }
-            })
+        audio[0].addEventListener('ended',function(e){
+            current++;
+            if(current == len){
+                current = 0;
+                link = playlist.find('a')[0];
+            }else{
+                link = playlist.find('a')[current];
+            }
+            run($(link),audio[0]);
         });
+    }
+    function run(link, player){
+            console.log(link);
+            console.log(link.attr('href'));
+            player.src = link.attr('href');
+            console.log(link.attr('href'));
+            par = link.parent();
+            par.addClass('active').siblings().removeClass('active');
+            audio[0].load();
+            audio[0].play();
+    }
+});
     </script>
     </head>
     <body>
@@ -72,21 +61,13 @@
         <p class="description">This album is inspired by star trek</p>
         <div id="wrapper">
             <div class="current_track">
-              <p>Current Track: <span id="current_track"></span></p>
+              <p>Current Track: <span id="current_track">a new noun</span></p>
             </div>
-            <audio preload></audio>
-            <p class="controls">space: play/pause, &larr;/&rarr; prev/next track</p>
-            <ol class="track_list">
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//01%20a%20new%20noun.mp3" track-title="a new noun"><i class='fa fa-play fa-lg'></i></a> a new noun [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//01%20a%20new%20noun.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//02%20the%20noun%20strikes%20back.mp3" track-title="the noun strikes back"><i class='fa fa-play fa-lg'></i></a> the noun strikes back [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//02%20the%20noun%20strikes%20back.mp3" download>download</a>]</p>
-            </li>
-            <li>
-                <p class="song"><a href="#" class="play_track" data-src="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//03%20revenge%20of%20the%20noun.mp3" track-title="revenge of the noun"><i class='fa fa-play fa-lg'></i></a> revenge of the noun [<a class="download_link track_download_link" href="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//03%20revenge%20of%20the%20noun.mp3" download>download</a>]</p>
-            </li>
-            </ol>
+            <audio id="audio" preload="auto" tabindex="0" controls="" type="audio/mpeg">
+                <source type="audio/mp3" src="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//01%20a%20new%20noun.mp3">
+                Sorry, your browser does not support HTML5 audio.
+            </audio>
+            <ol id="playlist">            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//01%20a%20new%20noun.mp3">a new noun</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//02%20the%20noun%20strikes%20back.mp3">the noun strikes back</a></li>            <li><a href="https://raw.githubusercontent.com/marshzor/cerulean/master/noun%20wars//03%20revenge%20of%20the%20noun.mp3">revenge of the noun</a></li>            </ol>
         </div>        <hr />
         <p class="footer-credits">generated by <a href="https://github.com/tonygaetani/cerulean-cloud-city" target="_blank">cerulean-cloud-city</a></p>
     </body>
